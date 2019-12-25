@@ -5,9 +5,22 @@
     ],
     "jsRules": {},
     "rules": {
-        "quotemark": [true, "single", "avoid-escape"],
+        "indent": [
+            true,
+            "spaces",
+            2
+        ],
+        "semicolon": "never",
+        "quotemark": [
+            true,
+            "single",
+            "avoid-escape"
+        ],
         "ordered-imports": false,
-        "curly": false,
+        "curly": [
+            true,
+            "ignore-same-line"
+        ],
         "object-literal-shorthand": false,
         "object-literal-sort-keys": false,
         "arrow-parens": false,
