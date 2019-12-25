@@ -1,5 +1,5 @@
 {
-    "name": "simple-vim",
+    "name": "vscode-simple-vim",
     "displayName": "Simple Vim",
     "description": "Vim extension for VSCode",
     "version": "0.0.1",
