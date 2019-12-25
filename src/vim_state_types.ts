@@ -1,6 +1,6 @@
-import * as vscode from 'vscode';
+import * as vscode from 'vscode'
 
-import { Mode } from './modes_types';
+import { Mode } from './modes_types'
 
 export type VimState = {
   typeSubscription: vscode.Disposable | undefined
@@ -8,12 +8,12 @@ export type VimState = {
   keysPressed: string[]
   registers: {
     contentsList: (string | undefined)[]
-    linewise: boolean,
+    linewise: boolean
   }
   semicolonAction: (vimState: VimState, editor: vscode.TextEditor) => void
   commaAction: (vimState: VimState, editor: vscode.TextEditor) => void
   lastPutRanges: {
     ranges: (vscode.Range | undefined)[]
-    linewise: boolean,
-  },
-};
+    linewise: boolean
+  }
+}
