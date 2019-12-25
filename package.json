@@ -2,12 +2,12 @@
     "name": "simple-vim",
     "displayName": "Simple Vim",
     "description": "Vim extension for VSCode",
-    "version": "0.0.5",
+    "version": "0.0.1",
     "license": "MIT",
-    "publisher": "jpotterm",
+    "publisher": "frandiox",
     "repository": {
         "type": "git",
-        "url": "https://github.com/jpotterm/vscode-simple-vim.git"
+        "url": "https://github.com/frandiox/vscode-simple-vim.git"
     },
     "engines": {
         "vscode": "^1.22.2"
@@ -65,11 +65,11 @@
         }
     },
     "scripts": {
-        "vscode:prepublish": "npm run compile",
+        "vscode:prepublish": "yarn compile",
         "compile": "tsc -p ./",
         "watch": "tsc -watch -p ./",
         "postinstall": "node ./node_modules/vscode/bin/install",
-        "lint": "tslint -c tslint.json 'src/**/*.ts' --exclude 'src/test/*.ts'"
+        "lint": "tslint -c tslint.json 'src/**/*.ts' --fix"
     },
     "devDependencies": {
         "@types/node": "^10.5.1",
