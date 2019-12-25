@@ -112,6 +112,11 @@
                     ],
                     "default": "lineThin",
                     "description": "Cursor style for editor when in VISUAL LINE mode."
+                },
+                "simpleVim.deleteYanks": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "When true, d, dd, and D yank before deleting."
                 }
             }
         }
