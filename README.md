@@ -2,7 +2,13 @@
 
 An opinionated Vim-like extension for VSCode that prioritizes simplicity (of use and implementation) and integration with native VSCode features.
 
+> This is forked from [jpotterm's SimpleVim](https://github.com/jpotterm/vscode-simple-vim) and adapted to my personal needs
+
 Once you enter Insert mode it will be a completely vanilla VSCode experience: the only event SimpleVim will listen for is the `Escape` key to go back to Normal mode.
+
+This intents to be a minimum Vim implementation to keep things fast. Other implementations are more complete but prohibitively slows down the editor.
+
+This extension is not publised in VSCode marketplace to avoid polluting it. Run `yarn bundle` to generate a local `.vsix` file and install it locally in your VSCode editor ([howto](https://stackoverflow.com/a/50232194/4468962)).
 
 ## Operators
 
