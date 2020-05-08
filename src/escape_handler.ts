@@ -13,7 +13,7 @@ export function escapeHandler(vimState: VimState): void {
   if (!editor) return
 
   if (vimState.mode === Mode.Insert) {
-    editor.selections = editor.selections.map(selection => {
+    editor.selections = editor.selections.map((selection) => {
       const newPosition = positionUtils.left(selection.active)
       return new vscode.Selection(newPosition, newPosition)
     })
@@ -27,7 +27,7 @@ export function escapeHandler(vimState: VimState): void {
       editor.selections = [editor.selections[0]]
     }
   } else if (vimState.mode === Mode.Visual) {
-    editor.selections = editor.selections.map(selection => {
+    editor.selections = editor.selections.map((selection) => {
       const newPosition = new vscode.Position(
         selection.active.line,
         Math.max(selection.active.character - 1, 0)
@@ -38,7 +38,7 @@ export function escapeHandler(vimState: VimState): void {
     enterNormalMode(vimState)
     setModeCursorStyle(vimState.mode, editor)
   } else if (vimState.mode === Mode.VisualLine) {
-    editor.selections = editor.selections.map(selection => {
+    editor.selections = editor.selections.map((selection) => {
       const newPosition = selection.active.with({
         character: Math.max(selection.active.character - 1, 0),
       })

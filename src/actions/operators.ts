@@ -20,7 +20,7 @@ export const operators: Action[] = [
     ['d'],
     operatorRanges,
     (vimState, editor, ranges, linewise) => {
-      if (ranges.every(x => x === undefined)) return
+      if (ranges.every((x) => x === undefined)) return
 
       cursorsToRangesStart(editor, ranges)
 
@@ -39,12 +39,12 @@ export const operators: Action[] = [
     ['c'],
     operatorRanges,
     (vimState, editor, ranges, linewise) => {
-      if (ranges.every(x => x === undefined)) return
+      if (ranges.every((x) => x === undefined)) return
 
       cursorsToRangesStart(editor, ranges)
 
-      editor.edit(editBuilder => {
-        ranges.forEach(range => {
+      editor.edit((editBuilder) => {
+        ranges.forEach((range) => {
           if (!range) return
           editBuilder.delete(range)
         })
@@ -59,13 +59,13 @@ export const operators: Action[] = [
     ['y'],
     operatorRanges,
     (vimState, editor, ranges, linewise) => {
-      if (ranges.every(x => x === undefined)) return
+      if (ranges.every((x) => x === undefined)) return
 
       yank(vimState, editor, ranges, linewise)
 
       if (vimState.mode === Mode.Visual || vimState.mode === Mode.VisualLine) {
         // Move cursor to start of yanked text
-        editor.selections = editor.selections.map(selection => {
+        editor.selections = editor.selections.map((selection) => {
           return new vscode.Selection(selection.start, selection.start)
         })
 
@@ -74,7 +74,7 @@ export const operators: Action[] = [
       } else {
         // Yank highlight
         const highlightRanges: vscode.Range[] = []
-        ranges.forEach(range => {
+        ranges.forEach((range) => {
           if (range) {
             highlightRanges.push(new vscode.Range(range.start, range.end))
           }
@@ -87,7 +87,7 @@ export const operators: Action[] = [
     ['r'],
     operatorRanges,
     (vimState, editor, ranges, linewise) => {
-      if (ranges.every(x => x === undefined)) return
+      if (ranges.every((x) => x === undefined)) return
 
       cursorsToRangesStart(editor, ranges)
 
@@ -105,7 +105,7 @@ export const operators: Action[] = [
     operatorRanges,
     (vimState, editor, ranges, linewise) => {
       if (
-        ranges.every(x => x === undefined) ||
+        ranges.every((x) => x === undefined) ||
         vimState.mode === Mode.Visual ||
         vimState.mode === Mode.VisualLine
       ) {
@@ -155,8 +155,8 @@ function delete_(
   linewise: boolean
 ) {
   editor
-    .edit(editBuilder => {
-      ranges.forEach(range => {
+    .edit((editBuilder) => {
+      ranges.forEach((range) => {
         if (!range) return
 
         let deleteRange = range

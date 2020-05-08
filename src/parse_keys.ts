@@ -200,7 +200,7 @@ export function createOperatorRangeExactKeys(
 ): OperatorRange {
   return (vimState, keys, editor) => {
     if (arrayEquals(keys, matchKeys)) {
-      const ranges = editor.selections.map(selection => {
+      const ranges = editor.selections.map((selection) => {
         return f(vimState, editor.document, selection.active)
       })
       return {
@@ -238,7 +238,7 @@ export function createOperatorRangeRegex(
     const doesMatch = keysStr.match(doesPattern)
 
     if (doesMatch) {
-      const ranges = editor.selections.map(selection => {
+      const ranges = editor.selections.map((selection) => {
         return f(vimState, editor.document, selection.active, doesMatch)
       })
       return {

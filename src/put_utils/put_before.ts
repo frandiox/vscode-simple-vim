@@ -24,12 +24,12 @@ function normalModeLinewise(
   editor: vscode.TextEditor,
   registerContentsList: (string | undefined)[]
 ) {
-  const insertContentsList = registerContentsList.map(contents => {
+  const insertContentsList = registerContentsList.map((contents) => {
     if (contents === undefined) return undefined
     else return contents + '\n'
   })
 
-  const insertPositions = editor.selections.map(selection => {
+  const insertPositions = editor.selections.map((selection) => {
     return new vscode.Position(selection.active.line, 0)
   })
 
@@ -39,7 +39,7 @@ function normalModeLinewise(
   )
 
   editor
-    .edit(editBuilder => {
+    .edit((editBuilder) => {
       insertPositions.forEach((position, i) => {
         const contents = insertContentsList[i]
         if (contents === undefined) return
@@ -70,7 +70,7 @@ function normalModeCharacterwise(
   editor: vscode.TextEditor,
   registerContentsList: (string | undefined)[]
 ) {
-  const insertPositions = editor.selections.map(selection => selection.active)
+  const insertPositions = editor.selections.map((selection) => selection.active)
   const adjustedInsertPositions = adjustInsertPositions(
     insertPositions,
     registerContentsList
@@ -81,7 +81,7 @@ function normalModeCharacterwise(
   )
 
   editor
-    .edit(editBuilder => {
+    .edit((editBuilder) => {
       insertPositions.forEach((insertPosition, i) => {
         const registerContents = registerContentsList[i]
         if (registerContents === undefined) return

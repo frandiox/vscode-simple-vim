@@ -33,12 +33,12 @@ function normalModeLinewise(
   editor: vscode.TextEditor,
   registerContentsList: (string | undefined)[]
 ) {
-  const insertContentsList = registerContentsList.map(contents => {
+  const insertContentsList = registerContentsList.map((contents) => {
     if (contents === undefined) return undefined
     else return '\n' + contents
   })
 
-  const insertPositions = editor.selections.map(selection => {
+  const insertPositions = editor.selections.map((selection) => {
     const lineLength = editor.document.lineAt(selection.active.line).text.length
     return new vscode.Position(selection.active.line, lineLength)
   })
@@ -48,11 +48,11 @@ function normalModeLinewise(
     insertContentsList
   )
   const rangeBeginnings = adjustedInsertPositions.map(
-    position => new vscode.Position(position.line + 1, 0)
+    (position) => new vscode.Position(position.line + 1, 0)
   )
 
   editor
-    .edit(editBuilder => {
+    .edit((editBuilder) => {
       insertPositions.forEach((position, i) => {
         const contents = insertContentsList[i]
         if (contents === undefined) return
@@ -62,7 +62,7 @@ function normalModeLinewise(
     })
     .then(() => {
       editor.selections = rangeBeginnings.map(
-        position => new vscode.Selection(position, position)
+        (position) => new vscode.Selection(position, position)
       )
     })
 
@@ -77,7 +77,7 @@ function normalModeCharacterwise(
   editor: vscode.TextEditor,
   registerContentsList: (string | undefined)[]
 ) {
-  const insertPositions = editor.selections.map(selection => {
+  const insertPositions = editor.selections.map((selection) => {
     return positionUtils.right(editor.document, selection.active)
   })
 
@@ -91,7 +91,7 @@ function normalModeCharacterwise(
   )
 
   editor
-    .edit(editBuilder => {
+    .edit((editBuilder) => {
       insertPositions.forEach((insertPosition, i) => {
         const registerContents = registerContentsList[i]
         if (registerContents === undefined) return
@@ -121,14 +121,14 @@ function visualMode(
   registerContentsList: (string | undefined)[]
 ) {
   const insertContentsList = vimState.registers.linewise
-    ? registerContentsList.map(contents => {
+    ? registerContentsList.map((contents) => {
         if (!contents) return undefined
         else return '\n' + contents + '\n'
       })
     : registerContentsList
 
   editor
-    .edit(editBuilder => {
+    .edit((editBuilder) => {
       editor.selections.forEach((selection, i) => {
         const contents = insertContentsList[i]
         if (contents === undefined) return
@@ -141,13 +141,13 @@ function visualMode(
       vimState.lastPutRanges = {
         ranges: getInsertRangesFromEnd(
           editor.document,
-          editor.selections.map(selection => selection.active),
+          editor.selections.map((selection) => selection.active),
           insertContentsList
         ),
         linewise: vimState.registers.linewise,
       }
 
-      editor.selections = editor.selections.map(selection => {
+      editor.selections = editor.selections.map((selection) => {
         const newPosition = positionUtils.left(selection.active)
         return new vscode.Selection(newPosition, newPosition)
       })
@@ -163,7 +163,7 @@ function visualLineMode(
   registerContentsList: (string | undefined)[]
 ) {
   editor
-    .edit(editBuilder => {
+    .edit((editBuilder) => {
       editor.selections.forEach((selection, i) => {
         const registerContents = registerContentsList[i]
         if (registerContents === undefined) return
@@ -174,12 +174,12 @@ function visualLineMode(
     .then(() => {
       vimState.lastPutRanges = {
         ranges: editor.selections.map(
-          selection => new vscode.Range(selection.start, selection.end)
+          (selection) => new vscode.Range(selection.start, selection.end)
         ),
         linewise: vimState.registers.linewise,
       }
 
-      editor.selections = editor.selections.map(selection => {
+      editor.selections = editor.selections.map((selection) => {
         return new vscode.Selection(selection.start, selection.start)
       })
 

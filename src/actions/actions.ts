@@ -29,7 +29,7 @@ export const actions: Action[] = [
   ),
 
   parseKeysExact(['I'], [Mode.Normal], (vimState, editor) => {
-    editor.selections = editor.selections.map(selection => {
+    editor.selections = editor.selections.map((selection) => {
       const character = editor.document.lineAt(selection.active.line)
         .firstNonWhitespaceCharacterIndex
       const newPosition = selection.active.with({ character: character })
@@ -42,7 +42,7 @@ export const actions: Action[] = [
   }),
 
   parseKeysExact(['a'], [Mode.Normal], (vimState, editor) => {
-    editor.selections = editor.selections.map(selection => {
+    editor.selections = editor.selections.map((selection) => {
       const newPosition = positionUtils.right(editor.document, selection.active)
       return new vscode.Selection(newPosition, newPosition)
     })
@@ -53,7 +53,7 @@ export const actions: Action[] = [
   }),
 
   parseKeysExact(['A'], [Mode.Normal], (vimState, editor) => {
-    editor.selections = editor.selections.map(selection => {
+    editor.selections = editor.selections.map((selection) => {
       const lineLength = editor.document.lineAt(selection.active.line).text
         .length
       const newPosition = selection.active.with({ character: lineLength })
@@ -67,7 +67,7 @@ export const actions: Action[] = [
 
   parseKeysExact(['v'], [Mode.Normal, Mode.VisualLine], (vimState, editor) => {
     if (vimState.mode === Mode.Normal) {
-      editor.selections = editor.selections.map(selection => {
+      editor.selections = editor.selections.map((selection) => {
         const lineLength = editor.document.lineAt(selection.active.line).text
           .length
 
@@ -150,8 +150,8 @@ export const actions: Action[] = [
   }),
 
   parseKeysExact(['c', 'c'], [Mode.Normal], (vimState, editor) => {
-    editor.edit(editBuilder => {
-      editor.selections.forEach(selection => {
+    editor.edit((editBuilder) => {
+      editor.selections.forEach((selection) => {
         const line = editor.document.lineAt(selection.active.line)
         editBuilder.delete(
           new vscode.Range(
@@ -180,7 +180,7 @@ export const actions: Action[] = [
     yankLine(vimState, editor)
 
     // Yank highlight
-    const highlightRanges = editor.selections.map(selection => {
+    const highlightRanges = editor.selections.map((selection) => {
       const lineLength = editor.document.lineAt(selection.active.line).text
         .length
       return new vscode.Range(
@@ -195,7 +195,7 @@ export const actions: Action[] = [
     yankToEndOfLine(vimState, editor)
 
     // Yank highlight
-    const highlightRanges = editor.selections.map(selection => {
+    const highlightRanges = editor.selections.map((selection) => {
       const lineLength = editor.document.lineAt(selection.active.line).text
         .length
       return new vscode.Range(
@@ -217,7 +217,7 @@ export const actions: Action[] = [
   }),
 
   parseKeysExact(['s', 's'], [Mode.Normal], (vimState, editor) => {
-    editor.selections = editor.selections.map(selection => {
+    editor.selections = editor.selections.map((selection) => {
       return new vscode.Selection(
         selection.active.with({ character: 0 }),
         positionUtils.lineEnd(editor.document, selection.active)
@@ -229,7 +229,7 @@ export const actions: Action[] = [
   }),
 
   parseKeysExact(['S'], [Mode.Normal], (vimState, editor) => {
-    editor.selections = editor.selections.map(selection => {
+    editor.selections = editor.selections.map((selection) => {
       return new vscode.Selection(
         selection.active,
         positionUtils.lineEnd(editor.document, selection.active)
@@ -276,7 +276,7 @@ export const actions: Action[] = [
 
 function deleteLine(vimState: VimState, editor: vscode.TextEditor): void {
   vscode.commands.executeCommand('editor.action.deleteLines').then(() => {
-    editor.selections = editor.selections.map(selection => {
+    editor.selections = editor.selections.map((selection) => {
       const character = editor.document.lineAt(selection.active.line)
         .firstNonWhitespaceCharacterIndex
       const newPosition = selection.active.with({ character: character })
@@ -287,7 +287,7 @@ function deleteLine(vimState: VimState, editor: vscode.TextEditor): void {
 
 function yankLine(vimState: VimState, editor: vscode.TextEditor): void {
   vimState.registers = {
-    contentsList: editor.selections.map(selection => {
+    contentsList: editor.selections.map((selection) => {
       return editor.document.lineAt(selection.active.line).text
     }),
     linewise: true,
@@ -296,7 +296,7 @@ function yankLine(vimState: VimState, editor: vscode.TextEditor): void {
 
 function yankToEndOfLine(vimState: VimState, editor: vscode.TextEditor): void {
   vimState.registers = {
-    contentsList: editor.selections.map(selection => {
+    contentsList: editor.selections.map((selection) => {
       return editor.document
         .lineAt(selection.active.line)
         .text.substring(selection.active.character)

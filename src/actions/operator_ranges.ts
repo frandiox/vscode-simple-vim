@@ -343,7 +343,7 @@ export const operatorRanges: OperatorRange[] = [
     (vimState, document, position) => {
       const tags = getTags(document)
 
-      const closestTag = arrayFindLast(tags, tag => {
+      const closestTag = arrayFindLast(tags, (tag) => {
         if (tag.closing) {
           return (
             position.isAfterOrEqual(tag.opening.start) &&
@@ -380,7 +380,7 @@ export const operatorRanges: OperatorRange[] = [
     (vimState, document, position) => {
       const tags = getTags(document)
 
-      const closestTag = arrayFindLast(tags, tag => {
+      const closestTag = arrayFindLast(tags, (tag) => {
         const afterStart = position.isAfterOrEqual(tag.opening.start)
 
         if (tag.closing) {
@@ -582,7 +582,7 @@ function createWordForwardHandler(
     const lineText = document.lineAt(position.line).text
     const ranges = wordRangesFunction(lineText)
 
-    const result = ranges.find(x => x.start > position.character)
+    const result = ranges.find((x) => x.start > position.character)
 
     if (result) {
       return new vscode.Range(
@@ -609,7 +609,7 @@ function createWordBackwardHandler(
     const lineText = document.lineAt(position.line).text
     const ranges = wordRangesFunction(lineText)
 
-    const result = ranges.reverse().find(x => x.start < position.character)
+    const result = ranges.reverse().find((x) => x.start < position.character)
 
     if (result) {
       return new vscode.Range(
@@ -633,7 +633,7 @@ function createWordEndHandler(
     const lineText = document.lineAt(position.line).text
     const ranges = wordRangesFunction(lineText)
 
-    const result = ranges.find(x => x.end > position.character)
+    const result = ranges.find((x) => x.end > position.character)
 
     if (result) {
       return new vscode.Range(
@@ -658,7 +658,7 @@ function createInnerWordHandler(
     const ranges = wordRangesFunction(lineText)
 
     const result = ranges.find(
-      x => x.start <= position.character && position.character <= x.end
+      (x) => x.start <= position.character && position.character <= x.end
     )
 
     if (result) {

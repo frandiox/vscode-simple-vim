@@ -33,7 +33,7 @@ function onSelectionChange(
 ): void {
   if (vimState.mode === Mode.Insert) return
 
-  if (e.selections.every(selection => selection.isEmpty)) {
+  if (e.selections.every((selection) => selection.isEmpty)) {
     // It would be nice if we could always go from visual to normal mode when all selections are empty
     // but visual mode on an empty line will yield an empty selection and there's no good way of
     // distinguishing that case from the rest. So we only do it for mouse events.
@@ -58,7 +58,7 @@ function onDidChangeActiveTextEditor(
 ) {
   if (!editor) return
 
-  if (editor.selections.every(selection => selection.isEmpty)) {
+  if (editor.selections.every((selection) => selection.isEmpty)) {
     if (vimState.mode === Mode.Visual || vimState.mode === Mode.VisualLine) {
       enterNormalMode(vimState)
     }
@@ -75,10 +75,10 @@ function onDidChangeActiveTextEditor(
 
 export function activate(context: vscode.ExtensionContext): void {
   context.subscriptions.push(
-    vscode.window.onDidChangeActiveTextEditor(editor =>
+    vscode.window.onDidChangeActiveTextEditor((editor) =>
       onDidChangeActiveTextEditor(globalVimState, editor)
     ),
-    vscode.window.onDidChangeTextEditorSelection(e =>
+    vscode.window.onDidChangeTextEditorSelection((e) =>
       onSelectionChange(globalVimState, e)
     ),
     vscode.commands.registerCommand('extension.simpleVim.escapeKey', () =>

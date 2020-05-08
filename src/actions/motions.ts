@@ -367,7 +367,7 @@ function execRegexMotion(
   match: RegExpMatchArray,
   regexMotion: (args: RegexMotionArgs) => vscode.Position
 ) {
-  return execMotion(vimState, editor, motionArgs => {
+  return execMotion(vimState, editor, (motionArgs) => {
     return regexMotion({
       ...motionArgs,
       match: match,
@@ -542,7 +542,7 @@ function createWordForwardHandler(
       const lineText = document.lineAt(position.line).text
       const ranges = wordRangesFunction(lineText)
 
-      const result = ranges.find(x => x.start > position.character)
+      const result = ranges.find((x) => x.start > position.character)
 
       if (result) {
         return position.with({ character: result.start })
@@ -561,7 +561,7 @@ function createWordBackwardHandler(
       const lineText = document.lineAt(position.line).text
       const ranges = wordRangesFunction(lineText)
 
-      const result = ranges.reverse().find(x => x.start < position.character)
+      const result = ranges.reverse().find((x) => x.start < position.character)
 
       if (result) {
         return position.with({ character: result.start })
@@ -580,7 +580,7 @@ function createWordEndHandler(
       const lineText = document.lineAt(position.line).text
       const ranges = wordRangesFunction(lineText)
 
-      const result = ranges.find(x => x.end > position.character)
+      const result = ranges.find((x) => x.end > position.character)
 
       if (result) {
         return position.with({ character: result.end })

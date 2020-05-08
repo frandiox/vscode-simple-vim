@@ -31,7 +31,7 @@ function setModeContext(key: string) {
     'extension.simpleVim.visualLineMode',
   ]
 
-  modeKeys.forEach(modeKey => {
+  modeKeys.forEach((modeKey) => {
     vscode.commands.executeCommand('setContext', modeKey, key === modeKey)
   })
 }

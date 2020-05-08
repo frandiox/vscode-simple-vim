@@ -13,7 +13,9 @@ export function getRegisterContentsList(
   // Handle putting with a different number of cursors than when you yanked
   if (vimState.registers.contentsList.length !== editor.selections.length) {
     const combinedContents = vimState.registers.contentsList.join('\n')
-    registerContentsList = editor.selections.map(selection => combinedContents)
+    registerContentsList = editor.selections.map(
+      (selection) => combinedContents
+    )
   }
 
   return registerContentsList
@@ -134,5 +136,5 @@ export function adjustInsertPositions(
   }
 
   adjustedIndexPositions.sort((a, b) => a.originalIndex - b.originalIndex)
-  return adjustedIndexPositions.map(indexPosition => indexPosition.position)
+  return adjustedIndexPositions.map((indexPosition) => indexPosition.position)
 }
