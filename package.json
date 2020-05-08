@@ -1,139 +1,139 @@
 {
-    "name": "vscode-simple-vim",
-    "displayName": "Simple Vim",
-    "description": "Vim extension for VSCode",
-    "version": "0.0.1",
-    "license": "MIT",
-    "publisher": "frandiox",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/frandiox/vscode-simple-vim.git"
-    },
-    "engines": {
-        "vscode": "^1.22.2"
-    },
-    "categories": [
-        "Other"
+  "name": "vscode-simple-vim",
+  "displayName": "Simple Vim",
+  "description": "Vim extension for VSCode",
+  "version": "0.0.1",
+  "license": "MIT",
+  "publisher": "frandiox",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frandiox/vscode-simple-vim.git"
+  },
+  "engines": {
+    "vscode": "^1.22.2"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/extension",
+  "contributes": {
+    "keybindings": [
+      {
+        "key": "Escape",
+        "command": "extension.simpleVim.escapeKey",
+        "when": "editorTextFocus"
+      },
+      {
+        "key": "ctrl+r",
+        "command": "redo",
+        "when": "editorTextFocus && !extension.simpleVim.insertMode"
+      },
+      {
+        "key": "ctrl+d",
+        "command": "extension.simpleVim.scrollDownHalfPage",
+        "when": "editorTextFocus && !extension.simpleVim.insertMode"
+      },
+      {
+        "key": "ctrl+u",
+        "command": "extension.simpleVim.scrollUpHalfPage",
+        "when": "editorTextFocus && !extension.simpleVim.insertMode"
+      },
+      {
+        "key": "ctrl+f",
+        "command": "extension.simpleVim.scrollDownPage",
+        "when": "editorTextFocus && !extension.simpleVim.insertMode"
+      },
+      {
+        "key": "ctrl+b",
+        "command": "extension.simpleVim.scrollUpPage",
+        "when": "editorTextFocus && !extension.simpleVim.insertMode"
+      }
     ],
-    "activationEvents": [
-        "*"
-    ],
-    "main": "./out/extension",
-    "contributes": {
-        "keybindings": [
-            {
-                "key": "Escape",
-                "command": "extension.simpleVim.escapeKey",
-                "when": "editorTextFocus"
-            },
-            {
-                "key": "ctrl+r",
-                "command": "redo",
-                "when": "editorTextFocus && !extension.simpleVim.insertMode"
-            },
-            {
-                "key": "ctrl+d",
-                "command": "extension.simpleVim.scrollDownHalfPage",
-                "when": "editorTextFocus && !extension.simpleVim.insertMode"
-            },
-            {
-                "key": "ctrl+u",
-                "command": "extension.simpleVim.scrollUpHalfPage",
-                "when": "editorTextFocus && !extension.simpleVim.insertMode"
-            },
-            {
-                "key": "ctrl+f",
-                "command": "extension.simpleVim.scrollDownPage",
-                "when": "editorTextFocus && !extension.simpleVim.insertMode"
-            },
-            {
-                "key": "ctrl+b",
-                "command": "extension.simpleVim.scrollUpPage",
-                "when": "editorTextFocus && !extension.simpleVim.insertMode"
-            }
-        ],
-        "configuration": {
-            "type": "object",
-            "title": "SimpleVim Configuration",
-            "properties": {
-                "simpleVim.yankHighlightBackgroundColor": {
-                    "type": "string",
-                    "default": "#F8F3AB",
-                    "description": "Background color that flashes to show the range when yanking."
-                },
-                "simpleVim.insertModeCursorStyle": {
-                    "type": "string",
-                    "enum": [
-                        "line",
-                        "block",
-                        "underline",
-                        "lineThin",
-                        "blockOutline",
-                        "underlineThin"
-                    ],
-                    "default": "line",
-                    "description": "Cursor style for editor when in INSERT mode."
-                },
-                "simpleVim.normalModeCursorStyle": {
-                    "type": "string",
-                    "enum": [
-                        "line",
-                        "block",
-                        "underline",
-                        "lineThin",
-                        "blockOutline",
-                        "underlineThin"
-                    ],
-                    "default": "underline",
-                    "description": "Cursor style for editor when in NORMAL mode."
-                },
-                "simpleVim.visualModeCursorStyle": {
-                    "type": "string",
-                    "enum": [
-                        "line",
-                        "block",
-                        "underline",
-                        "lineThin",
-                        "blockOutline",
-                        "underlineThin"
-                    ],
-                    "default": "lineThin",
-                    "description": "Cursor style for editor when in VISUAL mode."
-                },
-                "simpleVim.visualLineModeCursorStyle": {
-                    "type": "string",
-                    "enum": [
-                        "line",
-                        "block",
-                        "underline",
-                        "lineThin",
-                        "blockOutline",
-                        "underlineThin"
-                    ],
-                    "default": "lineThin",
-                    "description": "Cursor style for editor when in VISUAL LINE mode."
-                },
-                "simpleVim.deleteYanks": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "When true, d, dd, and D yank before deleting."
-                }
-            }
+    "configuration": {
+      "type": "object",
+      "title": "SimpleVim Configuration",
+      "properties": {
+        "simpleVim.yankHighlightBackgroundColor": {
+          "type": "string",
+          "default": "#F8F3AB",
+          "description": "Background color that flashes to show the range when yanking."
+        },
+        "simpleVim.insertModeCursorStyle": {
+          "type": "string",
+          "enum": [
+            "line",
+            "block",
+            "underline",
+            "lineThin",
+            "blockOutline",
+            "underlineThin"
+          ],
+          "default": "line",
+          "description": "Cursor style for editor when in INSERT mode."
+        },
+        "simpleVim.normalModeCursorStyle": {
+          "type": "string",
+          "enum": [
+            "line",
+            "block",
+            "underline",
+            "lineThin",
+            "blockOutline",
+            "underlineThin"
+          ],
+          "default": "underline",
+          "description": "Cursor style for editor when in NORMAL mode."
+        },
+        "simpleVim.visualModeCursorStyle": {
+          "type": "string",
+          "enum": [
+            "line",
+            "block",
+            "underline",
+            "lineThin",
+            "blockOutline",
+            "underlineThin"
+          ],
+          "default": "lineThin",
+          "description": "Cursor style for editor when in VISUAL mode."
+        },
+        "simpleVim.visualLineModeCursorStyle": {
+          "type": "string",
+          "enum": [
+            "line",
+            "block",
+            "underline",
+            "lineThin",
+            "blockOutline",
+            "underlineThin"
+          ],
+          "default": "lineThin",
+          "description": "Cursor style for editor when in VISUAL LINE mode."
+        },
+        "simpleVim.deleteYanks": {
+          "type": "boolean",
+          "default": false,
+          "description": "When true, d, dd, and D yank before deleting."
         }
-    },
-    "scripts": {
-        "vscode:prepublish": "yarn compile",
-        "compile": "tsc -p ./",
-        "bundle": "vsce package",
-        "watch": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "lint": "prettier --config ./.prettierrc --ignore-path ./.prettierignore --list-different --write \"**/*.{js,ts,md}\""
-    },
-    "devDependencies": {
-        "@types/node": "^13.1.0",
-        "prettier": "^1.19.1",
-        "typescript": "^3.7.4",
-        "vsce": "^1.71.0",
-        "vscode": "^1.1.36"
+      }
     }
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn compile",
+    "compile": "tsc -p ./",
+    "bundle": "vsce package",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "lint": "prettier --config ./.prettierrc --ignore-path ./.prettierignore --list-different --write \"**/*.{json,js,ts,md}\""
+  },
+  "devDependencies": {
+    "@types/node": "^13.13.5",
+    "prettier": "^2.0.5",
+    "typescript": "^3.8.3",
+    "vsce": "^1.75.0",
+    "vscode": "^1.1.37"
+  }
 }
