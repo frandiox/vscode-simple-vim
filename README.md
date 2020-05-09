@@ -59,6 +59,7 @@ OperatorRanges select a range for an Operator to act on. They must be used in No
 | `it`            | Inside XML tag.                                                                                                      |
 | `at`            | Outside XML tag.                                                                                                     |
 | `ii`            | Inside indentation level.                                                                                            |
+| `s<quote>`      | `vim.surround` Target the surrounding `<quote>`s (any of `` '"` ``).                                                 |
 
 ## Motions
 
@@ -130,6 +131,12 @@ Actions are miscellaneous commands that don't follow the well-defined patterns o
 | `Ctrl+b` | Scroll up full page.                                                    |
 | `;`      | Repeat the last `f`, `F`, `t` or `T` motion forward.                    |
 | `,`      | Repeat the last `f`, `F`, `t` or `T` motion backward.                   |
+
+## Vim Surround
+
+[Vim Surround](https://github.com/tpope/vim-surround#surroundvim) is partially supported. The following combinations are implemented in the latest version:
+
+- `d` operator + `s<quote>` range: Remove surrounding quotes.
 
 ## Differences From Vim
 

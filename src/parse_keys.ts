@@ -231,7 +231,7 @@ export function createOperatorRangeRegex(
     document: vscode.TextDocument,
     position: vscode.Position,
     match: RegExpMatchArray
-  ) => vscode.Range | undefined
+  ) => vscode.Range | vscode.Range[] | undefined
 ): OperatorRange {
   return (vimState, keys, editor) => {
     const keysStr = keys.join('')
@@ -243,7 +243,7 @@ export function createOperatorRangeRegex(
       })
       return {
         kind: 'success',
-        ranges: ranges,
+        ranges: ranges.flat(),
         linewise: linewise,
       }
     } else if (keysStr.match(couldPattern)) {

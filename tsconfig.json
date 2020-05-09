@@ -3,7 +3,7 @@
     "module": "commonjs",
     "target": "es6",
     "outDir": "out",
-    "lib": ["es6"],
+    "lib": ["es6", "esnext"],
     "sourceMap": true,
     "rootDir": "src",
 
@@ -12,5 +12,6 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true
   },
+  "include": ["./src/*.ts", "./src/**/*.ts"],
   "exclude": ["node_modules", ".vscode-test"]
 }

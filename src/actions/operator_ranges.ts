@@ -428,6 +428,36 @@ export const operatorRanges: OperatorRange[] = [
       )
     }
   ),
+
+  // --- SURROUND
+
+  createOperatorRangeRegex(
+    /^s(["'`])$/,
+    /^s$/,
+    false,
+    (vimState, document, position, match) => {
+      const lineText = document.lineAt(position.line).text
+      const result = findQuoteRange(quoteRanges(match[1], lineText), position)
+
+      if (result) {
+        const leftStart = result.start
+        const rightStart = result.end
+
+        return [
+          new vscode.Range(
+            position.with({ character: leftStart }),
+            position.with({ character: leftStart + 1 })
+          ),
+          new vscode.Range(
+            position.with({ character: rightStart }),
+            position.with({ character: rightStart + 1 })
+          ),
+        ]
+      } else {
+        return undefined
+      }
+    }
+  ),
 ]
 
 function createInnerBracketHandler(
