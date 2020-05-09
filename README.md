@@ -8,7 +8,13 @@ Once you enter Insert mode it will be a completely vanilla VSCode experience: th
 
 This intents to be a minimum Vim implementation to keep things fast. Other implementations are more complete but prohibitively slows down the editor.
 
-This extension is not publised in VSCode marketplace to avoid polluting it. Run `yarn bundle` to generate a local `.vsix` file and install it locally in your VSCode editor ([howto](https://stackoverflow.com/a/50232194/4468962)).
+## Installation
+
+This extension is not publised in VSCode marketplace to avoid polluting it. You can find the installer (vsix file) in the [releases](https://github.com/frandiox/vscode-simple-vim/releases).
+
+Alternatively, clone the repo and run `yarn && yarn bundle` to generate the local `.vsix`.
+
+See how to install a VSIX file locally [here](https://stackoverflow.com/a/50232194/4468962).
 
 ## Operators
 
