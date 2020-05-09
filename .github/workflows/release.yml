@@ -1,0 +1,66 @@
+name: Release VSIX installer
+
+on:
+  push:
+    tags:
+      - v*.*.*
+
+defaults:
+  run:
+    shell: bash
+    working-directory: "."
+
+jobs:
+  create-release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Create release
+        uses: Roang-zero1/github-create-release-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish-github:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Get yarn cache path
+        id: yarn-cache-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - uses: actions/cache@v1
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install
+        run: yarn install --frozen-lockfile
+      - name: Compile
+        if: success()
+        run: yarn compile
+      - name: Bundle
+        if: success()
+        run: yarn bundle
+      - name: Upload extension to release
+        uses: Roang-zero1/github-upload-release-artifacts-action@master
+        with:
+          args: "*.vsix"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  # publish-vsce:
+  #   name: Publish to Visual Studio Marketplace
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@master
+  #     - uses: actions/setup-node@v1
+  #       with:
+  #         node-version: 12.x
+  #     - name: Install
+  #       run: yarn install --frozen-lockfile
+  #     - name: Publish to Visual Studio Marketplace
+  #       run: npx --no-install vsce publish -p ${{ secrets.VSCE_TOKEN }}
