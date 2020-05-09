@@ -173,3 +173,12 @@ The `y` (yank) operator temporarily changes the background color of the range be
   "simpleVim.yankHighlightBackgroundColor": "#F8F3AB"
 }
 ```
+
+## Release procedure
+
+Run the following to create a release and upload the VSIX installer:
+
+```bash
+yarn version --new-version x.y.z
+git push && git push --tags
+```
