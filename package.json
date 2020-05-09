@@ -2,7 +2,7 @@
   "name": "vscode-simple-vim",
   "displayName": "Simple Vim",
   "description": "Vim extension for VSCode",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "license": "MIT",
   "publisher": "frandiox",
   "repository": {
